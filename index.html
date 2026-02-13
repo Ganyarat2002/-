@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>บริษัท โชคศิลา จำกัด รถแม็คโครรับจ้าง กรุงเทพ 24 ชั่วโมง</title>
+<meta name="description" content="บริษัท โชคศิลา จำกัด รถแม็คโครรับจ้าง 24 ชั่วโมง ขุดดิน ถมดิน ปรับพื้นที่ กรุงเทพ มีรถแม็คโคร 2 คัน รถ 6 ล้อ 1 คัน">
+<meta name="keywords" content="รถแม็คโครรับจ้าง, ขุดดิน, ถมดิน, รถแม็คโคร กรุงเทพ, รถขุด 24 ชั่วโมง">
+
+<!-- Google Analytics (ใส่ Tracking ID ของคุณแทน G-XXXX) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);} 
+gtag('js', new Date());
+gtag('config', 'G-XXXX');
+</script>
+
+<style>
+body{margin:0;font-family:tahoma;background:#0d0d0d;color:white}
+nav{background:#111;padding:15px;position:sticky;top:0;z-index:999}
+nav a{color:white;margin:15px;text-decoration:none;font-weight:bold;cursor:pointer}
+nav a:hover{color:#00ffc3}
+section{padding:60px 20px;display:none}
+.active{display:block}
+.header{text-align:center;padding:120px 20px;background:linear-gradient(45deg,#000428,#004e92)}
+.card{background:#1a1a1a;padding:20px;margin:15px 0;border-radius:10px}
+button{background:#ff0033;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer}
+button:hover{background:#00ffc3;color:black}
+input,textarea{width:100%;padding:10px;margin:10px 0;border:none;border-radius:5px}
+img{max-width:100%;border-radius:10px;margin-top:10px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a onclick="showPage('home')">หน้าแรก</a>
+<a onclick="showPage('portfolio')">ผลงาน</a>
+<a onclick="showPage('pricing')">ราคา</a>
+<a onclick="showPage('quote')">ใบเสนอราคา</a>
+<a onclick="showPage('contact')">ติดต่อ</a>
+<a onclick="showPage('admin')">แอดมิน</a>
+</nav>
+
+<section id="home" class="active">
+<div class="header">
+<h1>บริษัท โชคศิลา จำกัด</h1>
+<p>รถแม็คโครรับจ้าง 24 ชั่วโมง กรุงเทพ</p>
+</div>
+
+<div class="card">
+<h2>ข้อมูลบริษัท</h2>
+<p>มีรถแม็คโคร 2 คัน และรถ 6 ล้อ 1 คัน ให้บริการขุดดิน ถมดิน ปรับพื้นที่ งานก่อสร้างทุกประเภท</p>
+</div>
+</section>
+
+<section id="portfolio">
+<h2>ผลงานของเรา</h2>
+<div class="gallery" id="gallery"></div>
+</section>
+
+<section id="pricing">
+<h2>ราคาโดยประมาณ</h2>
+<div class="card">
+<p>รถแม็คโคร เริ่มต้น 1,500 - 3,500 บาท/ชั่วโมง</p>
+<p>รถ 6 ล้อ ขนดิน เริ่มต้น 800 - 1,500 บาท/เที่ยว</p>
+<p>* ราคาขึ้นอยู่กับหน้างาน *</p>
+</div>
+</section>
+
+<section id="quote">
+<h2>ขอใบเสนอราคา</h2>
+<form onsubmit="sendQuote(event)">
+<input id="name" placeholder="ชื่อ" required>
+<input id="phone" placeholder="เบอร์โทร" required>
+<textarea id="detail" placeholder="รายละเอียดงาน"></textarea>
+<label>แนบรูปพื้นที่งาน</label>
+<input type="file" id="fileUpload" accept="image/*">
+<button type="submit">ส่งข้อมูล</button>
+</form>
+</section>
+
+<section id="contact">
+<h2>ติดต่อเรา</h2>
+<div class="card">
+<a href="#">LINE</a><br>
+<a href="#">Facebook</a><br>
+<a href="#">TikTok</a><br>
+<a href="tel:000000000">โทรศัพท์</a><br>
+<a href="mailto:example@email.com">Email</a>
+</div>
+
+<iframe width="100%" height="300" style="border:0" loading="lazy" src="https://maps.google.com/maps?q=bangkok&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</section>
+
+<section id="admin">
+<h2>ระบบแอดมิน</h2>
+<input type="password" id="adminPass" placeholder="รหัสผ่าน">
+<button onclick="loginAdmin()">เข้าสู่ระบบ</button>
+
+<div id="adminPanel" style="display:none">
+<h3>อัปโหลดผลงาน</h3>
+<input type="file" accept="image/*" onchange="uploadPortfolio(event)">
+</div>
+</section>
+
+<script>
+
+function showPage(page){
+document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+document.getElementById(page).classList.add('active');
+}
+
+function loginAdmin(){
+let pass=document.getElementById('adminPass').value;
+if(pass==='1234'){ 
+ document.getElementById('adminPanel').style.display='block';
+ alert('เข้าสู่ระบบสำเร็จ');
+}
+else alert('รหัสผ่านผิด');
+}
+
+function uploadPortfolio(e){
+let file=e.target.files[0];
+let reader=new FileReader();
+reader.onload=function(){
+let img=document.createElement('img');
+img.src=reader.result;
+document.getElementById('gallery').appendChild(img);
+localStorage.setItem('gallery',document.getElementById('gallery').innerHTML);
+}
+reader.readAsDataURL(file);
+}
+
+function loadGallery(){
+let data=localStorage.getItem('gallery');
+if(data) document.getElementById('gallery').innerHTML=data;
+}
+loadGallery();
+
+function sendQuote(e){
+e.preventDefault();
+let name=document.getElementById('name').value;
+let phone=document.getElementById('phone').value;
+let detail=document.getElementById('detail').value;
+
+let msg=`ขอใบเสนอราคา %0A ชื่อ:${name} %0A เบอร์:${phone} %0A รายละเอียด:${detail}`;
+
+window.open(`https://line.me/R/msg/text/?${msg}`);
+window.location=`mailto:example@email.com?subject=ขอใบเสนอราคา&body=${msg}`;
+}
+
+</script>
+
+</body>
+</html>
